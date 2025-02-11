@@ -1,0 +1,88 @@
+{
+  "name": "Process temperature",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "process-temperature",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f41270c7-d324-475b-a869-f2af94a7abd1",
+      "name": "Webhook",
+      "webhookId": "e425dd15-7383-492a-9362-67585eb476bb"
+    },
+    {
+      "parameters": {
+        "jsCode": "const status = $input.first().json.body.temperature > 25 ? \"HIGH\" : \"NORMAL\";\nconst id = $input.first().json.body.id;\n\nreturn {\n    id,\n    status,\n    processedAt: new Date().toISOString()\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "82d882a3-0897-4ddf-9fdd-15028e23b113",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "http://host.docker.internal:3000/processed-reading",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{$json}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "013280b7-0ed1-4338-9be8-b206159b07b5",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ab14db44-93b1-48a6-8315-e19eece2ba79",
+  "meta": {
+    "instanceId": "c39f98a87b97902c22df430325827cb41996096c760021eda8f4ed7904f09e85"
+  },
+  "id": "QSuVkbH07cVG55tA",
+  "tags": []
+}

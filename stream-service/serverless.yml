@@ -1,0 +1,41 @@
+org: adscult
+
+app: temperature-monitor
+
+service: stream-service
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+    httpPort: 3000
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  timeout: 30
+
+functions:
+  health-check:
+    handler: src/handlers/health-check.handler
+    events:
+      - httpApi:
+          path: /health-check
+          method: GET
+
+  update-processed-readings:
+    handler: src/handlers/readings.updateProcessedReading
+    events:
+      - httpApi:
+          path: /processed-reading
+          method: PATCH
+
+  fetch-latest-readings:
+    handler: src/handlers/readings.fetchLatestReadings
+    events:
+      - httpApi:
+          path: /latest-readings
+          method: GET
