@@ -20,7 +20,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.1",
     "serverless": "^3.40.0",
-    "serverless-offline": "^14.4.0",
+    "serverless-offline": "^13.2.0",
     "ts-node": "^10.9.2"
   }
 }
