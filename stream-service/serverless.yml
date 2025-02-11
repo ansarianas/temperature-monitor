@@ -1,7 +1,3 @@
-org: adscult
-
-app: temperature-monitor
-
 service: stream-service
 
 custom:
