@@ -29,3 +29,14 @@ npm run rest
 This will start the express app locally
 
 Note: Mongo is hosted on cloud so no need to do additional setup for running mongo
+
+# Frontend: React + TypeScript
+
+### How to get started 
+
+- Navigate to cd client and run,
+
+```
+npm i
+npm run dev
+```
