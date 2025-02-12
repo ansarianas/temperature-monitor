@@ -34,7 +34,7 @@
     {
       "parameters": {
         "method": "PATCH",
-        "url": "http://host.docker.internal:3000/processed-reading",
+        "url": "http://host.docker.internal:9000/api/temperature/processed-reading",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{$json}}",
