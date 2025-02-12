@@ -29,7 +29,7 @@ export const fetchLatestReadings = asyncHandler(
 );
 
 /**
- * @public PATCH /api/tepmperature/processed-reading
+ * @public PATCH /api/tepmperature/reading
  */
 export const updateProcessedReading = asyncHandler(
   async (req: Request, res: Response) => {
