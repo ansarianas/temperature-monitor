@@ -55,7 +55,7 @@ app.post("/notify", async (req, res) => {
   }
 });
 
-server.listen(4000, async () => {
+server.listen(config.WS_PORT, async () => {
   await connectDB(config.DB_URI);
   console.log(`WebSocket server running on ${config.WS_BASE_URI}`);
 });

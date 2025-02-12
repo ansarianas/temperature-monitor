@@ -1,4 +1,4 @@
-# Backend: REST + Websocket Communication
+# REST + Websocket + n8n Communication
 
 Standalone service that interacts with mongodb and n8n workflow.
 
@@ -16,7 +16,6 @@ docker run -it --rm --name n8n -p 5678:5678 docker.n8n.io/n8nio/n8n
 
 ## Starting the servers
 
-- Navigate to cd server and run,
 ```
 npm i 
 npm run socket
